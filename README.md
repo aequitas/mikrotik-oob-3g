@@ -26,10 +26,6 @@ Configuring a Mikrotik RouterOS router to use a USB stick 3G modem as a out-of-b
 - [KPN Prepaid](https://www.kpn.com/mobiel/prepaid-simkaart) (prepaid, simonly, needs periodic refresh)
 - [EasyM2M](http://www.easym2m.eu/) (free trial)
 
-I broke the SIM connector when I tried to insert a microsim using a crude jig :(. So I got some aluminium foil to 'repair' the connectors.
-
-[img;fix]
-
 # Userful commands
 
 List USB devices:
@@ -77,4 +73,12 @@ Disable pin:
 Send SMS:
 
     /tool sms send phone-number=0123456789 message=test port=usb1
+
+# POIDH
+
+I broke the SIM connector when I tried to insert a microsim using a crude jig :(. So I got some aluminium foil to 'repair' the connectors.
+
+!['solution'](/img/IMG_20170516_195326.jpg)
+!['temporary'](/img/IMG_20170516_195350.jpg)
+!['stick'](/img/IMG_20170516_195709.jpg)
 
