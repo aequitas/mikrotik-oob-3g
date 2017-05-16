@@ -12,7 +12,8 @@ Configuring a Mikrotik RouterOS router to use a USB stick 3G modem as a out-of-b
 # Todos:
 
 - SMS monitoring alerts
-- PPP OOB management (VPN/IPsec/IPv6?/call-home)
+- PPP OOB management (VPN/IPsec/IPv6?/call-home/on-sms trigger)
+- Prepaid balance check via SMS (SALDO -> 1266, mikrotik scripting)
 
 # Sources:
 
