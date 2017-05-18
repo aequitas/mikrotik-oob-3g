@@ -100,8 +100,6 @@ Also if everything works correctly a disabled PPP interface should have been cre
           user="" password="" profile=default phone="" dial-command="ATDT" modem-init="" null-modem=no dial-on-demand=yes
           add-default-route=yes default-route-distance=0 use-peer-dns=yes keepalive-timeout=30 allow=pap,chap,mschap1,mschap2
 
-Taking it out of disabled state might disable SMS functionality depending on modem!
-
 Next set connection details like APN, prevent it from routing all internet traffic and enable the interface.
 
     [user@router] > /interface ppp-client set 0 apn=portalmmm.nl add-default-route=no
