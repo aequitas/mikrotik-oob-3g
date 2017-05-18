@@ -75,6 +75,57 @@ Send SMS:
 
     /tool sms send phone-number=0123456789 message=test port=usb1
 
+# Internet
+
+To obtain internet over 3G a PPP connection is used. First verify modem information:
+
+    [user@router] > /interface ppp-client info 0
+           modem-status: ready
+             pin-status: no password required
+          functionality: full
+           manufacturer: huawei
+                  model: E160G
+               revision: 11.608.12.00.55
+          serial-number: xxxx
+       current-operator: KPN (cellid unknown)
+      access-technology: 3G
+         signal-strengh: -75 dBm
+       frame-error-rate: n/a
+
+Also if everything works correctly a disabled PPP interface should have been created:
+
+    [user@router] > /interface ppp-client print
+    Flags: X - disabled, R - running
+     0 X  name="ppp-out1" max-mtu=1500 max-mru=1500 mrru=disabled port=usb2 data-channel=0 info-channel=0 apn="internet" pin=""
+          user="" password="" profile=default phone="" dial-command="ATDT" modem-init="" null-modem=no dial-on-demand=yes
+          add-default-route=yes default-route-distance=0 use-peer-dns=yes keepalive-timeout=30 allow=pap,chap,mschap1,mschap2
+
+Taking it out of disabled state might disable SMS functionality depending on modem!
+
+Next set connection details like APN, prevent it from routing all internet traffic and enable the interface.
+
+    [user@router] > /interface ppp-client set 0 apn=portalmmm.nl add-default-route=no
+    [user@router] > /interface ppp-client enable 0
+
+Now watch connectivity status coming up and the internet works:
+
+    [user@router] > /interface ppp-client monitor ppp-out1
+              status: connected
+              uptime: 57s
+            encoding:
+                 mtu: 1500
+                 mru: 1500
+       local-address: x.x.x.x
+      remote-address: 0.0.0.0
+
+    [user@router] > /ping 8.8.8.8 interface=ppp-out1
+      SEQ HOST                                     SIZE TTL TIME  STATUS
+        0 8.8.8.8                                    56  47 120ms
+        1 8.8.8.8                                    56  47 125ms
+        2 8.8.8.8                                    56  47 136ms
+
+
+
 # POIDH
 
 I broke the SIM connector when I tried to insert a microsim using a crude jig :(. So I got some aluminium foil to 'repair' the connectors.
