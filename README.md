@@ -77,7 +77,19 @@ Send SMS:
 
 # Internet
 
-To obtain internet over 3G a PPP connection is used. First verify modem information:
+To obtain internet over 3G a PPP connection is used.
+
+    [user@router] > /interface ppp-client print
+    Flags: X - disabled, R - running
+     0 X  name="ppp-out1" max-mtu=1500 max-mru=1500 mrru=disabled port=usb2 data-channel=0 info-channel=0 apn="internet" pin=""
+          user="" password="" profile=default phone="" dial-command="ATDT" modem-init="" null-modem=no dial-on-demand=yes
+          add-default-route=yes default-route-distance=0 use-peer-dns=yes keepalive-timeout=30 allow=pap,chap,mschap1,mschap2
+
+If PPP interface has not been added automatically create it manually:
+
+    [user@router] > /interface ppp-client add port=usb1
+
+First verify modem information:
 
     [user@router] > /interface ppp-client info 0
            modem-status: ready
@@ -91,14 +103,6 @@ To obtain internet over 3G a PPP connection is used. First verify modem informat
       access-technology: 3G
          signal-strengh: -75 dBm
        frame-error-rate: n/a
-
-Also if everything works correctly a disabled PPP interface should have been created:
-
-    [user@router] > /interface ppp-client print
-    Flags: X - disabled, R - running
-     0 X  name="ppp-out1" max-mtu=1500 max-mru=1500 mrru=disabled port=usb2 data-channel=0 info-channel=0 apn="internet" pin=""
-          user="" password="" profile=default phone="" dial-command="ATDT" modem-init="" null-modem=no dial-on-demand=yes
-          add-default-route=yes default-route-distance=0 use-peer-dns=yes keepalive-timeout=30 allow=pap,chap,mschap1,mschap2
 
 Next set connection details like APN, prevent it from routing all internet traffic and enable the interface.
 
